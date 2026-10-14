@@ -21,6 +21,13 @@ public class LoadingScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         fadeOut.SetActive(true);
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(1);
+        if (SceneLoadProfiler.Instance != null)
+        {
+            SceneLoadProfiler.Instance.LoadSceneAndMeasure("DesertRun");
+        }
+        else
+        {
+            SceneManager.LoadScene("DesertRun");
+        }
     }
 }

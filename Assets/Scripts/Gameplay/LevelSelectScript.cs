@@ -16,6 +16,13 @@ public class LevelSelectScript : MonoBehaviour
     }
     public void clickButton()
     {
-        SceneManager.LoadScene(3);
+        if (SceneLoadProfiler.Instance != null)
+        {
+            SceneLoadProfiler.Instance.LoadSceneAndMeasure("Loading");
+        }
+        else
+        {
+            SceneManager.LoadScene("Loading");
+        }
     }
 }

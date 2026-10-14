@@ -65,6 +65,13 @@ public class MainMenuScript : MonoBehaviour
     {   buttonSelect.Play();
         fadeOut.SetActive(true);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(2);
+        if (SceneLoadProfiler.Instance != null)
+        {
+            SceneLoadProfiler.Instance.LoadSceneAndMeasure("LevelSelect");
+        }
+        else
+        {
+            SceneManager.LoadScene("LevelSelect");
+        }
     }
 }

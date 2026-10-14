@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.3014168">
+  <test-suite type="TestSuite" id="1019" name="Runner3d" fullname="Runner3d" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.301417" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1013" name="PlayModeTests.dll" fullname="G:/Runner3d/Library/ScriptAssemblies/PlayModeTests.dll" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.286310" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12772" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1014" name="Tests" fullname="Tests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.283575" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1015" name="PlayMode" fullname="Tests.PlayMode" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.279479" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="GameManagerPlayModeTests" fullname="Tests.PlayMode.GameManagerPlayModeTests" classname="Tests.PlayMode.GameManagerPlayModeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.080674" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1003" name="GameManager_AddScore_IncreasesScore" fullname="Tests.PlayMode.GameManagerPlayModeTests.GameManager_AddScore_IncreasesScore" methodname="GameManager_AddScore_IncreasesScore" classname="Tests.PlayMode.GameManagerPlayModeTests" runstate="Runnable" seed="632143574" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.032976" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="GameManager_GameOver_PreventsScoreAddition" fullname="Tests.PlayMode.GameManagerPlayModeTests.GameManager_GameOver_PreventsScoreAddition" methodname="GameManager_GameOver_PreventsScoreAddition" classname="Tests.PlayMode.GameManagerPlayModeTests" runstate="Runnable" seed="2013006399" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.008384" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="GameManager_InitializesWithZeroScoreAndNotGameOver" fullname="Tests.PlayMode.GameManagerPlayModeTests.GameManager_InitializesWithZeroScoreAndNotGameOver" methodname="GameManager_InitializesWithZeroScoreAndNotGameOver" classname="Tests.PlayMode.GameManagerPlayModeTests" runstate="Runnable" seed="1706585774" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.022668" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="RunnerPlayModeTests" fullname="Tests.PlayMode.RunnerPlayModeTests" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.195601" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1009" name="Gameplay_CollisionHandling_ObstacleCollision_DisablesMovementAndTriggersGameOver" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_CollisionHandling_ObstacleCollision_DisablesMovementAndTriggersGameOver" methodname="Gameplay_CollisionHandling_ObstacleCollision_DisablesMovementAndTriggersGameOver" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="1708525671" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.024088" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="Gameplay_EdgeCase_RepeatedCollisions_ExecutedOnce" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_EdgeCase_RepeatedCollisions_ExecutedOnce" methodname="Gameplay_EdgeCase_RepeatedCollisions_ExecutedOnce" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="1941653680" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.020456" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="Gameplay_Movement_ClampBoundaries_KeepsPositionInsideLimits" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_Movement_ClampBoundaries_KeepsPositionInsideLimits" methodname="Gameplay_Movement_ClampBoundaries_KeepsPositionInsideLimits" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="336882410" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.029888" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="Gameplay_Movement_MovesForwardOverFrames" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_Movement_MovesForwardOverFrames" methodname="Gameplay_Movement_MovesForwardOverFrames" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="118085726" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.039427" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="Gameplay_Restart_ResetsRequiredState" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_Restart_ResetsRequiredState" methodname="Gameplay_Restart_ResetsRequiredState" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="1317023146" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.021943" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="Gameplay_ScoreIncreasesDuringPlay_WhenCollectingCoins" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_ScoreIncreasesDuringPlay_WhenCollectingCoins" methodname="Gameplay_ScoreIncreasesDuringPlay_WhenCollectingCoins" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="1469790262" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.018718" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="Gameplay_ScoringStops_AfterGameOver" fullname="Tests.PlayMode.RunnerPlayModeTests.Gameplay_ScoringStops_AfterGameOver" methodname="Gameplay_ScoringStops_AfterGameOver" classname="Tests.PlayMode.RunnerPlayModeTests" runstate="Runnable" seed="947646091" result="Passed" start-time="2026-10-13 08:45:21Z" end-time="2026-10-13 08:45:21Z" duration="0.024246" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/GEORGE V JOY/AppData/LocalLow/DefaultCompany/Runner3d\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

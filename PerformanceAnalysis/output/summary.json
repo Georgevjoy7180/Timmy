@@ -1,0 +1,60 @@
+{
+  "tests": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failure_details": [],
+    "pass_rate_percent": 100.0
+  },
+  "performance": {
+    "FPS": {
+      "samples": 5843,
+      "min": 11.75,
+      "max": 384.25,
+      "mean": 303.683,
+      "median": 305.92
+    },
+    "FrameTim": {
+      "samples": 5843,
+      "min": 2.603,
+      "max": 85.095,
+      "mean": 3.357,
+      "median": 3.269
+    },
+    "TotalMem": {
+      "samples": 5843,
+      "min": 4571016944.0,
+      "max": 4648768151.0,
+      "mean": 4606171633.553,
+      "median": 4605220826.0
+    },
+    "GCUsedMemoryBytes": {
+      "samples": 5843,
+      "min": 771723264.0,
+      "max": 840478720.0,
+      "mean": 803595961.68,
+      "median": 802676736.0
+    },
+    "ElapsedSec": {
+      "samples": 5843,
+      "min": 0.006,
+      "max": 19.617,
+      "mean": 9.612,
+      "median": 9.566
+    }
+  },
+  "baseline_comparison": {},
+  "threshold_violations": [
+    {
+      "metric": "FrameTim",
+      "statistic": "max",
+      "actual": 85.095,
+      "limit": 33.33,
+      "rule": "max",
+      "message": "Maximum frame time too high: 85.095; threshold 33.330"
+    }
+  ],
+  "status": "FAIL"
+}

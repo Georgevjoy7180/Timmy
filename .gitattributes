@@ -1,0 +1,6 @@
+# Handle line endings automatically for text files
+* text=auto
+
+# Explicitly ensure python and text files use LF (safest for Docker/Linux runners)
+*.py text eol=lf
+*.sh text eol=lf
