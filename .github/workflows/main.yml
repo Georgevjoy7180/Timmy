@@ -1,0 +1,96 @@
+name: CI Pipeline - Tests & Performance QA
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  # -----------------------------------------------------------------
+  # Job 1: Fast Python Unit Tests (Fails fast if analyze.py is broken)
+  # -----------------------------------------------------------------
+  test-python:
+    name: Run Python Analysis Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Execute Python Unit Tests
+        run: |
+          python -m unittest discover -s PerformanceAnalysis/tests -p "test_*.py" -v
+
+  # -----------------------------------------------------------------
+  # Job 2: Unity Automated Tests + QA Performance Analysis
+  # -----------------------------------------------------------------
+  test-unity-and-analyze:
+    name: Run Unity Tests & QA Gate
+    needs: test-python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+
+      # Run EditMode & PlayMode tests using Game-CI Test Runner
+      - name: Run Unity Tests (EditMode & PlayMode)
+        uses: game-ci/unity-test-runner@v4
+        id: testRunner
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: .
+          unityVersion: 6000.5.7f1
+          testMode: all
+          artifactsPath: reports
+
+      - name: Set up Python for Analysis
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Evaluate test results & performance reports against quality thresholds
+      - name: Run Performance & Test Gatekeeper (analyze.py)
+        run: |
+          mkdir -p output
+          
+          # Map generated test results to reports/test-results.xml if needed
+          if [ -f reports/all-results.xml ]; then
+            cp reports/all-results.xml reports/test-results.xml
+          fi
+          
+          # Run analysis engine (returns exit code 1 if tests fail or thresholds violate)
+          python PerformanceAnalysis/analyze.py \
+            --performance reports/performance.json \
+            --junit reports/test-results.xml \
+            --baseline PerformanceAnalysis/baseline.json \
+            --min-fps 60.0 \
+            --max-frame-ms 33.33 \
+            --output output/summary.json
+
+      # Upload Test & Performance Artifacts (Always runs, even if tests fail)
+      - name: Upload QA Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-test-and-performance-reports
+          path: |
+            reports/
+            output/summary.json
