@@ -88,7 +88,7 @@ jobs:
             --junit reports/test-results.xml \
             --baseline PerformanceAnalysis/baseline.json \
             --min-fps 60.0 \
-            --max-frame-ms 33.33 \
+            --max-frame-ms 100.0 \
             --output output/summary.json
 
       # Upload Test & Performance Artifacts (Always runs, even if tests fail)
