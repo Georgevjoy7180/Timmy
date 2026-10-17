@@ -103,10 +103,10 @@ jobs:
             reports/
             output/summary.json
   # -----------------------------------------------------------------
-  # Job 3: Build WebGL and Deploy to GitHub Pages (Playable Link)
+  # Job 3: Build WebGL
   # -----------------------------------------------------------------
-  build-and-deploy-webgl:
-    name: Build WebGL & Deploy to GitHub Pages
+  build-webgl:
+    name: Build WebGL Player
     needs: test-unity-and-analyze
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
@@ -124,7 +124,7 @@ jobs:
           restore-keys: |
             Library-WebGL-
 
-      # Build WebGL using Game-CI Builder
+      # Build WebGL using Game-CI Builder (uses repository secrets)
       - name: Build WebGL
         uses: game-ci/unity-builder@v4
         env:
@@ -136,20 +136,26 @@ jobs:
           buildsPath: build
           unityVersion: 6000.5.7f1
 
-      # Configure GitHub Pages
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      # Upload WebGL build as a Pages artifact
+      # Upload WebGL build as Pages artifact for deploy job
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/WebGL/WebGL
 
-      # Deploy to GitHub Pages
+  # -----------------------------------------------------------------
+  # Job 4: Deploy to GitHub Pages (Playable Link)
+  # -----------------------------------------------------------------
+  deploy-webgl:
+    name: Deploy to GitHub Pages
+    needs: build-webgl
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        environment:
-          name: github-pages
-          url: ${{ steps.deployment.outputs.page_url }}
         uses: actions/deploy-pages@v4
