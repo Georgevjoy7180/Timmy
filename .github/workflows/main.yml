@@ -103,54 +103,13 @@ jobs:
             reports/
             output/summary.json
   # -----------------------------------------------------------------
-  # Job 3: Build WebGL
+  # Job 3: Deploy WebGL to GitHub Pages (when docs/ exists)
   # -----------------------------------------------------------------
-  build-webgl:
-    name: Build WebGL Player
+  deploy-webgl:
+    name: Deploy WebGL to GitHub Pages
     needs: test-unity-and-analyze
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-
-      - name: Cache Unity Library
-        uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-WebGL-
-
-      # Build WebGL using Game-CI Builder (uses repository secrets)
-      - name: Build WebGL
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: WebGL
-          buildsPath: build
-          unityVersion: 6000.5.7f1
-          unityEmail: ${{ secrets.UNITY_EMAIL }}
-          unityPassword: ${{ secrets.UNITY_PASSWORD }}
-
-      # Upload WebGL build as Pages artifact for deploy job
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build/WebGL/WebGL
-
-  # -----------------------------------------------------------------
-  # Job 4: Deploy to GitHub Pages (Playable Link)
-  # -----------------------------------------------------------------
-  deploy-webgl:
-    name: Deploy to GitHub Pages
-    needs: build-webgl
-    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
@@ -158,6 +117,30 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check if WebGL build exists in docs/
+        id: check_docs
+        run: |
+          if [ -f docs/index.html ]; then
+            echo "has_docs=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_docs=false" >> $GITHUB_OUTPUT
+            echo "docs/index.html not found. Skipping web deployment."
+          fi
+
+      - name: Setup Pages
+        if: steps.check_docs.outputs.has_docs == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        if: steps.check_docs.outputs.has_docs == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
       - name: Deploy to GitHub Pages
+        if: steps.check_docs.outputs.has_docs == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
