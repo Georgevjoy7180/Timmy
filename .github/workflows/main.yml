@@ -135,6 +135,8 @@ jobs:
           targetPlatform: WebGL
           buildsPath: build
           unityVersion: 6000.5.7f1
+          unityEmail: ${{ secrets.UNITY_EMAIL }}
+          unityPassword: ${{ secrets.UNITY_PASSWORD }}
 
       # Upload WebGL build as Pages artifact for deploy job
       - name: Upload Pages Artifact
