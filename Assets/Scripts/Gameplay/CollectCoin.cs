@@ -25,6 +25,7 @@ public class CollectCoin : MonoBehaviour
 
         gameObject.SetActive(false);
         MasterControl.coinCount = ScoreLogic.AddCoin(MasterControl.coinCount, 1);
+        GameManager.NotifyCoinsChanged(MasterControl.coinCount);
 
         if (GameManager.Instance != null)
         {

@@ -6,6 +6,9 @@ namespace Gameplay
     {
         public static GameManager Instance { get; private set; }
 
+        public static event System.Action<int> OnCoinsUpdated;
+        public static event System.Action<int> OnScoreUpdated;
+
         public int Score { get; private set; }
         public bool IsGameOver { get; private set; }
 
@@ -32,6 +35,12 @@ namespace Gameplay
         {
             if (IsGameOver) return;
             Score = ScoreLogic.AddPoints(Score, points);
+            OnScoreUpdated?.Invoke(Score);
+        }
+
+        public static void NotifyCoinsChanged(int currentCoins)
+        {
+            OnCoinsUpdated?.Invoke(currentCoins);
         }
 
         public void GameOver()
@@ -44,6 +53,8 @@ namespace Gameplay
             Score = 0;
             IsGameOver = false;
             MasterControl.coinCount = 0;
+            OnScoreUpdated?.Invoke(0);
+            OnCoinsUpdated?.Invoke(0);
         }
     }
 }
